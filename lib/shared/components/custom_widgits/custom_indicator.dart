@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:wave_app/shared/styles/colors.dart';
 
 class CustomIndicator extends StatelessWidget {
   final bool isActive;
 
-  const CustomIndicator(this.isActive);
+  const CustomIndicator(this.isActive, {super.key});
 
   @override
   Widget build(BuildContext context) {

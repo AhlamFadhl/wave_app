@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:wave_app/shared/styles/colors.dart';
 
 class CustomShadow extends StatelessWidget {
   final Widget child;
@@ -11,7 +8,7 @@ class CustomShadow extends StatelessWidget {
   final double raduis;
   final width;
 
-  const CustomShadow({
+  const CustomShadow({super.key, 
     required this.child,
     this.padding,
     this.margin,
@@ -33,7 +30,7 @@ class CustomShadow extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(raduis)),
         boxShadow: [
           BoxShadow(
-              offset: Offset(0, 5),
+              offset: const Offset(0, 5),
               blurRadius: 10,
               spreadRadius: 5,
               color: Colors.grey.shade100.withOpacity(0.7))

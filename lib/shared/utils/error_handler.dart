@@ -2,14 +2,13 @@ import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:wave_app/shared/components/constants.dart';
 import 'package:wave_app/shared/utils/functions.dart';
 
 class ErrorHandler {
   static Future<bool> handleError(
     Object e, {
     bool? showTost,
-    dynamic? s,
+    dynamic s,
   }) async {
     // log(s.toString());
 
@@ -89,7 +88,7 @@ class ErrorHandler {
       }
       return true;
     } else {
-      log("ErrorHandler else ==> " + e.toString());
+      log("ErrorHandler else ==> $e");
 
       return true;
     }

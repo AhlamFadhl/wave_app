@@ -57,7 +57,7 @@ class SectionCubit extends Cubit<SectionState> {
       emit(SectionLoadingState());
       try {
         var value = await DioHelper.getData(
-          url: SECTION + "/" + section.id.toString(),
+          url: "$SECTION/${section.id}",
           lang: langCode,
         );
         if (value.statusCode == 200) {

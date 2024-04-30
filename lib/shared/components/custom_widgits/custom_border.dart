@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:wave_app/shared/styles/colors.dart';
 
 class CustomBorder extends StatelessWidget {
   final Widget child;
@@ -10,7 +7,7 @@ class CustomBorder extends StatelessWidget {
   final color;
 
   const CustomBorder(
-      {required this.child,
+      {super.key, required this.child,
       this.padding,
       this.margin,
       this.color = Colors.white});

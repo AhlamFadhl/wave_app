@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerGrid extends StatelessWidget {
-  int itemCount;
-  int crossAxisCount;
-  double mainAxisSpacing;
-  double crossAxisSpacing;
-  ShimmerGrid({
+  final int itemCount;
+  final int crossAxisCount;
+  final double mainAxisSpacing;
+  final double crossAxisSpacing;
+  const ShimmerGrid({super.key, 
     this.itemCount = 4,
     this.crossAxisCount = 2,
     this.mainAxisSpacing = 20.0,
@@ -20,7 +20,7 @@ class ShimmerGrid extends StatelessWidget {
       child: GridView.builder(
         padding: const EdgeInsets.all(20),
         shrinkWrap: true,
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemCount: itemCount, // Adjust the count based on your needs
 
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

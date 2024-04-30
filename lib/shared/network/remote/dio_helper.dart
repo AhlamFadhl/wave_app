@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:wave_app/shared/network/end_points.dart';
 
 class DioHelper {

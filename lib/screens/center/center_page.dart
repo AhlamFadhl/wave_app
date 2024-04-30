@@ -182,7 +182,8 @@ class CenterPage extends StatelessWidget {
                                   maxLines: 1,
                                   overflow: TextOverflow.fade,
                                 ),
-                                buidRateStart(cubit.store.review!.rating),
+                                if (cubit.store.review != null)
+                                  buidRateStart(0.0),
                               ],
                             ),
                           ),
@@ -245,10 +246,10 @@ class CenterPage extends StatelessWidget {
                                           cubit.store.departments!.length,
                                       itemBuilder: (context, index) => InkWell(
                                         onTap: () {
-                                          cubit.store.departments!
-                                              .forEach((element) {
+                                          for (var element
+                                              in cubit.store.departments!) {
                                             element.isSelected = false;
-                                          });
+                                          }
                                           cubit.store.departments![index]
                                               .isSelected = true;
                                           cubit.getServiceDep(cubit
@@ -264,7 +265,7 @@ class CenterPage extends StatelessWidget {
                                     ),
                                   ),
                                 if (cubit.isLoading)
-                                  ShimmerGrid(
+                                  const ShimmerGrid(
                                     itemCount: 3,
                                     crossAxisCount: 3,
                                   ),
@@ -284,7 +285,7 @@ class CenterPage extends StatelessWidget {
                                   height: 10,
                                 ),
                                 if (cubit.isLoading)
-                                  ShimmerGrid(
+                                  const ShimmerGrid(
                                     itemCount: 2,
                                   ),
                                 //Services
@@ -438,51 +439,6 @@ class CenterPage extends StatelessWidget {
               ),
             ),
           ),
-          shape: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide.none,
-          ),
-        );
-      },
-      transitionBuilder: (_, anim, __, child) {
-        Tween<Offset> tween;
-        if (anim.status == AnimationStatus.reverse) {
-          tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
-        } else {
-          tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
-        }
-
-        return SlideTransition(
-          position: tween.animate(anim),
-          child: FadeTransition(
-            opacity: anim,
-            child: child,
-          ),
-        );
-      },
-    );
-  }
-
-  void showCustomDialog1(BuildContext context, Services srv) {
-    showGeneralDialog(
-      context: context,
-      barrierLabel: "Barrier",
-      barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: const Duration(milliseconds: 700),
-      pageBuilder: (_, __, ___) {
-        return AlertDialog(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomText(
-                srv.name,
-                fontWeight: FontWeight.bold,
-              ),
-              const Divider(),
-            ],
-          ),
-          content: HtmlWidget(srv.details!),
           shape: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide.none,

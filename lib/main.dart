@@ -4,18 +4,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wave_app/lang/app_localization.dart';
 import 'package:wave_app/lang/cubit/cubit.dart';
 import 'package:wave_app/lang/cubit/state.dart';
-import 'package:wave_app/layout/cubit/cubit.dart';
-import 'package:wave_app/layout/main_page.dart';
-import 'package:wave_app/model/section.dart';
-import 'package:wave_app/screens/sections/cubit/cubit.dart';
-import 'package:wave_app/screens/sections/section_page.dart';
 import 'package:wave_app/screens/splash/cubit/cubit.dart';
-import 'package:wave_app/screens/splash/splash_page.dart';
 import 'package:wave_app/shared/network/local/cache_helper.dart';
 import 'package:wave_app/shared/network/remote/dio_helper.dart';
 import 'package:wave_app/shared/styles/themes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:wave_app/shared/utils/router.dart';
 
 void main() async {
@@ -24,11 +17,11 @@ void main() async {
   await CacheHelper.init();
   await DioHelper.init();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp();
+  const MyApp({super.key});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

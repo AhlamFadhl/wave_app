@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -25,15 +24,15 @@ class HomeCubit extends Cubit<HomeState> {
 
   getCategories(Categories cat) async {
     if (await checkInternet()) {
-      homeModel.categories!.forEach((element) {
+      for (var element in homeModel.categories!) {
         element.current = false;
-      });
+      }
       cat.current = true;
       isLoading = true;
       emit(CatLoadingState());
       try {
         var value = await DioHelper.getData(
-          url: SECTION + "/" + sectionMain.id.toString(),
+          url: "$SECTION/${sectionMain.id}",
           query: {"category_id": cat.id},
           lang: langCode,
         );

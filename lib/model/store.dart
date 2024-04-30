@@ -51,7 +51,7 @@ class Store {
     slug = json['slug'];
     image = json['image'];
     review =
-        json['review'] != null ? new Review.fromJson(json['review']) : null;
+        json['review'] != null ? Review.fromJson(json['review']) : null;
     staffCount = json['staff_count'];
     branchesCount = json['branches_count'];
     hasFavorite = json['has_favorite'];
@@ -60,19 +60,19 @@ class Store {
     if (json['socials'] != null) {
       socials = <Socials>[];
       json['socials'].forEach((v) {
-        socials!.add(new Socials.fromJson(v));
+        socials!.add(Socials.fromJson(v));
       });
     }
     if (json['services'] != null) {
       services = <Services>[];
       json['services'].forEach((v) {
-        services!.add(new Services.fromJson(v));
+        services!.add(Services.fromJson(v));
       });
     }
     if (json['branches'] != null) {
       branches = <Branches>[];
       json['branches'].forEach((v) {
-        branches!.add(new Branches.fromJson(v));
+        branches!.add(Branches.fromJson(v));
       });
     }
     //feedbacks
@@ -80,41 +80,41 @@ class Store {
     if (json['departments'] != null) {
       departments = <Departments>[];
       json['departments'].forEach((v) {
-        departments!.add(new Departments.fromJson(v));
+        departments!.add(Departments.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['mobile'] = this.mobile;
-    data['detail'] = this.detail;
-    data['slug'] = this.slug;
-    data['image'] = this.image;
-    if (this.review != null) {
-      data['review'] = this.review!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['email'] = email;
+    data['mobile'] = mobile;
+    data['detail'] = detail;
+    data['slug'] = slug;
+    data['image'] = image;
+    if (review != null) {
+      data['review'] = review!.toJson();
     }
-    data['staff_count'] = this.staffCount;
-    data['branches_count'] = this.branchesCount;
-    data['has_favorite'] = this.hasFavorite;
-    data['banners'] = this.banners;
-    data['stories'] = this.stories;
-    if (this.socials != null) {
-      data['socials'] = this.socials!.map((v) => v.toJson()).toList();
+    data['staff_count'] = staffCount;
+    data['branches_count'] = branchesCount;
+    data['has_favorite'] = hasFavorite;
+    data['banners'] = banners;
+    data['stories'] = stories;
+    if (socials != null) {
+      data['socials'] = socials!.map((v) => v.toJson()).toList();
     }
-    if (this.services != null) {
-      data['services'] = this.services!.map((v) => v.toJson()).toList();
+    if (services != null) {
+      data['services'] = services!.map((v) => v.toJson()).toList();
     }
-    if (this.branches != null) {
-      data['branches'] = this.branches!.map((v) => v.toJson()).toList();
+    if (branches != null) {
+      data['branches'] = branches!.map((v) => v.toJson()).toList();
     }
     //feedbacks
 
-    if (this.departments != null) {
-      data['departments'] = this.departments!.map((v) => v.toJson()).toList();
+    if (departments != null) {
+      data['departments'] = departments!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -134,10 +134,10 @@ class Socials {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['link'] = this.link;
-    data['name'] = this.name;
-    data['icon'] = this.icon;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['link'] = link;
+    data['name'] = name;
+    data['icon'] = icon;
     return data;
   }
 }
@@ -168,7 +168,7 @@ class Services {
     if (json['branches'] != null) {
       branches = <Branches>[];
       json['branches'].forEach((v) {
-        branches!.add(new Branches.fromJson(v));
+        branches!.add(Branches.fromJson(v));
       });
     }
     groupsIds = json['groups_ids'].cast<int>();
@@ -182,18 +182,18 @@ class Services {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.branches != null) {
-      data['branches'] = this.branches!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (branches != null) {
+      data['branches'] = branches!.map((v) => v.toJson()).toList();
     }
-    data['groups_ids'] = this.groupsIds;
-    data['duration'] = this.duration;
-    data['type'] = this.type;
-    data['price'] = this.price;
-    data['details'] = this.details;
-    data['image'] = this.image;
-    data['id'] = this.id;
-    data['name'] = this.name;
+    data['groups_ids'] = groupsIds;
+    data['duration'] = duration;
+    data['type'] = type;
+    data['price'] = price;
+    data['details'] = details;
+    data['image'] = image;
+    data['id'] = id;
+    data['name'] = name;
     return data;
   }
 }
@@ -224,13 +224,13 @@ class Branches {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['longitude'] = this.longitude;
-    data['latitude'] = this.latitude;
-    data['is_main'] = this.isMain;
-    data['address'] = this.address;
-    data['id'] = this.id;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['longitude'] = longitude;
+    data['latitude'] = latitude;
+    data['is_main'] = isMain;
+    data['address'] = address;
+    data['id'] = id;
+    data['name'] = name;
     return data;
   }
 }
@@ -251,10 +251,10 @@ class Departments {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['image'] = this.image;
-    data['id'] = this.id;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['image'] = image;
+    data['id'] = id;
+    data['name'] = name;
     return data;
   }
 }

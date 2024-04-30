@@ -36,7 +36,7 @@ class SectionPage extends StatelessWidget {
                   ),
                   ConditionalBuilder(
                       condition: !cubit.isLoadingSection,
-                      fallback: (context) => ShimmerGrid(),
+                      fallback: (context) => const ShimmerGrid(),
                       builder: (context) {
                         return GridView.builder(
                           padding: const EdgeInsets.all(20),

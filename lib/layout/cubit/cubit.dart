@@ -1,15 +1,9 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:wave_app/lang/app_localization.dart';
 import 'package:wave_app/model/section.dart';
-import 'package:wave_app/shared/components/constants.dart';
 import 'package:wave_app/shared/components/images.dart';
-import 'package:wave_app/shared/network/local/cache_helper.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:wave_app/shared/styles/colors.dart';
 part 'state.dart';
 
 class AppCubit extends Cubit<AppState> {

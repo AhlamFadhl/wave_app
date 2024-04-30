@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.3 <3.0.0'
+  sdk: '>=2.19.3 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -46,12 +46,12 @@ dependencies:
   #Tools
   go_router: ^11.0.0
   conditional_builder_null_safety: ^0.0.6
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.3.1
   #get: ^4.6.5
   bloc: ^8.1.2
   flutter_bloc: ^8.1.2
-  intl: ^0.17.0
-  flutter_screenutil: ^5.7.0
+  intl: ^0.18.1
+  flutter_screenutil: ^5.9.0
   connectivity_plus: ^4.0.0
   open_file_plus: ^3.4.1
   image_picker: ^0.8.4
@@ -81,6 +81,7 @@ dependencies:
   carousel_slider: ^4.2.1
   flutter_widget_from_html_core: ^0.14.11
   string_2_icon: ^0.0.2
+  flutter_rating_bar: ^4.0.1
   #pdf: ^3.10.1
   #path_provider: ^2.0.14
   #open_file: ^3.3.2

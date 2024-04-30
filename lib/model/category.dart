@@ -14,11 +14,11 @@ class Categories {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['current'] = this.current;
-    data['image'] = this.image;
-    data['name'] = this.name;
-    data['id'] = this.id;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['current'] = current;
+    data['image'] = image;
+    data['name'] = name;
+    data['id'] = id;
     return data;
   }
 }

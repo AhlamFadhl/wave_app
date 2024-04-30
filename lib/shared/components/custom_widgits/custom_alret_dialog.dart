@@ -4,7 +4,7 @@ import 'package:wave_app/shared/styles/colors.dart';
 class CustomAlertDialog extends StatelessWidget {
   final String title;
   final String question;
-  CustomAlertDialog({required this.title, required this.question});
+  const CustomAlertDialog({super.key, required this.title, required this.question});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +18,13 @@ class CustomAlertDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop(false); // No
           },
-          child: Text('لا'),
+          child: const Text('لا'),
         ),
         ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop(true); // Yes
           },
-          child: Text('نعم'),
+          child: const Text('نعم'),
         ),
       ],
     );

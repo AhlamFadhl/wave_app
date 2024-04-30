@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:string_2_icon/string_2_icon.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wave_app/model/category.dart';
+import 'package:wave_app/model/review.dart';
 import 'package:wave_app/model/section.dart';
 import 'package:wave_app/model/store.dart';
 import 'package:wave_app/shared/components/custom_widgits/custom_image.dart';
@@ -11,6 +13,7 @@ import 'package:wave_app/shared/components/custom_widgits/custom_progress_Indica
 import 'package:wave_app/shared/components/custom_widgits/custom_sized_box.dart';
 import 'package:wave_app/shared/components/custom_widgits/custom_text.dart';
 import 'package:wave_app/shared/styles/colors.dart';
+import 'package:wave_app/shared/utils/functions.dart';
 
 Widget setShimmer(bool isShimmer,
     {required Widget child,
@@ -195,7 +198,7 @@ Widget buildStoreCard(Store store) => Container(
           const SizedBox(
             height: 5,
           ),
-          buidRateStart(store.review!.rating),
+          if (store.review != null) buidRateStart(0.0),
           const SizedBox(
             height: 5,
           ),
@@ -264,40 +267,16 @@ Widget buildStoreCard(Store store) => Container(
       ),
     );
 
-Widget buidRateStart(int? rating) => Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          Icons.star,
-          size: 15,
-          color: ((rating ?? 0) >= 1) ? primaryColor : Colors.grey,
-        ),
-        Icon(
-          Icons.star,
-          size: 15,
-          color: ((rating ?? 0) >= 2) ? primaryColor : Colors.grey,
-        ),
-        Icon(
-          Icons.star,
-          size: 15,
-          color: ((rating ?? 0) >= 3) ? primaryColor : Colors.grey,
-        ),
-        Icon(
-          Icons.star,
-          size: 15,
-          color: ((rating ?? 0) >= 4) ? primaryColor : Colors.grey,
-        ),
-        Icon(
-          Icons.star,
-          size: 15,
-          color: ((rating ?? 0) >= 5) ? primaryColor : Colors.grey,
-        ),
-        CustomText(
-          rating != null ? "($rating)" : "",
-          fontSize: 12,
-          color: Colors.grey.shade800,
-        ),
-      ],
+Widget buidRateStart(double rating) => RatingBarIndicator(
+      rating: (rating),
+      direction: Axis.horizontal,
+      itemCount: 5,
+      itemSize: 15,
+      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+      itemBuilder: (context, index) => Icon(
+        Icons.star,
+        color: Colors.amber,
+      ),
     );
 
 Widget buildDepartment(Departments department) => Container(
@@ -477,5 +456,64 @@ Widget buildSocialIcon(Socials icn, size) => InkWell(
           color: Colors.white,
           size: 35,
         ),
+      ),
+    );
+
+Widget buildReviewCard(Review review) => Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              spreadRadius: 1,
+              blurRadius: 1,
+              color: Colors.grey.shade200,
+            ),
+          ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: CustomText(
+                  review.name!.isEmpty ? 'مستخدم' : review.name,
+                  fontSize: 12,
+                ),
+              ),
+              const Icon(
+                Icons.star,
+                color: Colors.amber,
+              ),
+              CustomText(
+                review.rating.toString(),
+                fontWeight: FontWeight.bold,
+              ),
+            ],
+          ),
+          Divider(
+            color: Colors.grey.shade200,
+          ),
+          review.note!.isEmpty
+              ? const CustomText(
+                  'لا يوجد مراجعة',
+                  fontSize: 12,
+                  color: Colors.black45,
+                )
+              : CustomText(
+                  review.note,
+                  fontSize: 12,
+                ),
+          SizedBox(
+            width: double.infinity,
+            child: CustomText(
+              formatDate(DateTime.parse(review.datetime!)),
+              fontSize: 10,
+              color: Colors.black38,
+              textAlign: TextAlign.end,
+            ),
+          ),
+        ],
       ),
     );

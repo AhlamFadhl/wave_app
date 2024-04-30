@@ -35,18 +35,18 @@ class HomeModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['sliders'] = this.sliders;
-    if (this.categories != null) {
-      data['categories'] = this.categories!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['sliders'] = sliders;
+    if (categories != null) {
+      data['categories'] = categories!.map((v) => v.toJson()).toList();
     }
-    if (this.recommend != null) {
-      data['recommend'] = this.recommend!.map((v) => v.toJson()).toList();
+    if (recommend != null) {
+      data['recommend'] = recommend!.map((v) => v.toJson()).toList();
     }
-    if (this.stores != null) {
-      data['stores'] = this.stores!.map((v) => v.toJson()).toList();
+    if (stores != null) {
+      data['stores'] = stores!.map((v) => v.toJson()).toList();
     }
-    data['id'] = this.id;
+    data['id'] = id;
     return data;
   }
 }

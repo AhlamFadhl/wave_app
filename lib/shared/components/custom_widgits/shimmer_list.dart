@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerList extends StatelessWidget {
-  int itemCount;
-  ShimmerList({
+  final int itemCount;
+  const ShimmerList({super.key, 
     this.itemCount = 4,
   });
   @override
@@ -14,10 +14,10 @@ class ShimmerList extends StatelessWidget {
       child: ListView.separated(
         padding: const EdgeInsets.all(20),
         shrinkWrap: true,
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemCount: itemCount, // Adjust the count based on your needs
 
-        separatorBuilder: (context, index) => SizedBox(
+        separatorBuilder: (context, index) => const SizedBox(
           height: 12,
         ),
         itemBuilder: (context, index) {

@@ -20,7 +20,7 @@ class CustomButtonWidget extends StatelessWidget {
   final Widget? icon;
 
   const CustomButtonWidget(
-      {required this.title,
+      {super.key, required this.title,
       required this.onTap,
       this.loading = false,
       this.color = primaryColor,
@@ -43,7 +43,7 @@ class CustomButtonWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: padding),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: color,
+          backgroundColor: color,
           elevation: elevation,
           padding: const EdgeInsets.symmetric(vertical: 10),
           shape: RoundedRectangleBorder(
@@ -53,7 +53,7 @@ class CustomButtonWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(radius)),
         ),
         onPressed: loading ? null : onTap,
-        child: loading != null && loading == true
+        child: loading == true
             ? CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.grey.shade100))
             : Row(

@@ -7,9 +7,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:open_file_plus/open_file_plus.dart';
 import 'package:wave_app/shared/styles/colors.dart';
-
+import 'package:timeago/timeago.dart' as timeago;
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 
@@ -172,7 +173,7 @@ Future<File> urlToFile(String imageUrl) async {
   var rng = Random();
   Directory tempDir = await getTemporaryDirectory();
   String tempPath = tempDir.path;
-  File file = File(tempPath + (rng.nextInt(100)).toString() + '.png');
+  File file = File('$tempPath${rng.nextInt(100)}.png');
   http.Response response = await http.get(Uri.parse(imageUrl));
   await file.writeAsBytes(response.bodyBytes);
   return file;
@@ -193,10 +194,10 @@ Future<String> downloadFile(String url, String fileName) async {
       file = File(filePath);
       await file.writeAsBytes(bytes);
       showToast(text: 'Saved in Documents', state: ToastStates.SUCCESS);
-      final _result = await OpenFile.open(filePath);
-      print(_result.message);
+      final result = await OpenFile.open(filePath);
+      print(result.message);
     } else {
-      filePath = 'Error code: ' + response.statusCode.toString();
+      filePath = 'Error code: ${response.statusCode}';
     }
   } catch (ex) {
     filePath = 'Can not fetch url ${ex.toString()}';
@@ -289,9 +290,9 @@ int convertTimeStringToInt(String s) {
 }
 
 int convertWeekDayNo(int day) {
-  if (day == 0)
+  if (day == 0) {
     return 2;
-  else if (day == 1)
+  } else if (day == 1)
     return 3;
   else if (day == 2)
     return 4;
@@ -313,6 +314,15 @@ Future<File?> pickImage(context) async {
 
   if (pickedImage != null) {
     return File(pickedImage.path);
-  } else
-    null;
+  } else {
+    return null;
+  }
+}
+
+String formatDate(DateTime date) {
+  if (DateTime.now().difference(date).inDays <= 1) {
+    return timeago.format(date, locale: 'en_short');
+  } else {
+    return DateFormat.yMMMEd().format(date);
+  }
 }

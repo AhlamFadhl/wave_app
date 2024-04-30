@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
@@ -9,7 +8,7 @@ class CacheHelper {
   }
 
   static Future<String?> getCachedLanguageCode() async {
-    return await sharedPreferences.getString('LangWave');
+    return sharedPreferences.getString('LangWave');
   }
 
   static Future<bool> cacheLanguageCode(String languageCode) async {
