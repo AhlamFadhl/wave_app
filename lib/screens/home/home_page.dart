@@ -98,7 +98,9 @@ class HomePage extends StatelessWidget {
                               });
                             },
                             child: buildStoreCard(
-                                cubit.homeModel.recommend![index])),
+                                cubit.homeModel.recommend![index], () {
+                              context.pushNamed('review');
+                            })),
                         separatorBuilder: (context, index) => const SizedBox(
                               width: 20,
                             ),
@@ -142,8 +144,16 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             vertical: 5, horizontal: 10),
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) =>
-                            buildStoreCard(cubit.homeModel.stores![index]),
+                        itemBuilder: (context, index) => InkWell(
+                            onTap: () {
+                              context.pushNamed('center', extra: {
+                                "currentStore": cubit.homeModel.stores![index]
+                              });
+                            },
+                            child: buildStoreCard(
+                                cubit.homeModel.stores![index], () {
+                              context.pushNamed('review');
+                            })),
                         separatorBuilder: (context, index) => const SizedBox(
                               width: 20,
                             ),

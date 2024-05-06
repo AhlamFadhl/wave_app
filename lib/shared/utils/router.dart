@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:wave_app/layout/main_page.dart';
 import 'package:wave_app/screens/center/center_page.dart';
+import 'package:wave_app/screens/review/rating_add.dart';
+import 'package:wave_app/screens/review/review_list.dart';
 import 'package:wave_app/screens/sections/section_page.dart';
 import 'package:wave_app/screens/splash/splash_page.dart';
 
@@ -40,6 +42,22 @@ final GoRouter router = GoRouter(
         builder: (context, state) {
           final data = state.extra! as Map<String, dynamic>;
           return CenterPage(currentStore: (data['currentStore']));
+        }),
+    //RatingDetails
+    GoRoute(
+        path: '/review',
+        name: 'review',
+        builder: (context, state) {
+          // final data = state.extra! as Map<String, dynamic>;
+          return RatingDetails();
+        }),
+    //RatingAddPage
+    GoRoute(
+        path: '/review_add',
+        name: 'review_add',
+        builder: (context, state) {
+          // final data = state.extra! as Map<String, dynamic>;
+          return RatingAddPage();
         }),
   ],
 );

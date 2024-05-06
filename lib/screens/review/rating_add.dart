@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wave_app/lang/app_localization.dart';
 import 'package:wave_app/model/review.dart';
 import 'package:wave_app/shared/components/custom_widgits/custom_button_widget.dart';
 import 'package:wave_app/shared/components/custom_widgits/custom_text.dart';
@@ -26,7 +27,7 @@ class RatingAddPage extends StatelessWidget {
         var cubit = ReviewCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: const Text('تقييم'),
+            title: Text('Rate'.tra(context)),
           ),
           body: Container(
             padding: const EdgeInsets.all(20),
@@ -48,8 +49,8 @@ class RatingAddPage extends StatelessWidget {
                     ]),
                     child: Column(
                       children: [
-                        const CustomText(
-                          'قيم مدى استفادتك من الإجابة',
+                        CustomText(
+                          'RateService'.tra(context),
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -57,7 +58,7 @@ class RatingAddPage extends StatelessWidget {
                           height: 20,
                         ),
                         RatingBar.builder(
-                          initialRating: cubit.ratingValue as double,
+                          initialRating: cubit.ratingValue,
                           minRating: 1,
                           direction: Axis.horizontal,
                           allowHalfRating: false,
@@ -66,13 +67,14 @@ class RatingAddPage extends StatelessWidget {
                           glow: false,
                           maxRating: 5,
                           unratedColor: Colors.black38,
-                          itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 4.0),
                           itemBuilder: (context, _) => const Icon(
                             Icons.star,
                             color: Colors.amber,
                           ),
                           onRatingUpdate: (rating) {
-                            cubit.ratingValue = rating.round();
+                            cubit.ratingValue = rating;
                             print(rating);
                           },
                         ),
@@ -85,17 +87,19 @@ class RatingAddPage extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      CustomText(
-                        'ادخل اسمك',
-                        fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: CustomText(
+                          'EnterName'.tra(context),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       CustomText(
-                        '(اختياري)',
+                        '(${'Optional'.tra(context)})',
                         color: Colors.black38,
                       ),
                     ],
@@ -109,17 +113,19 @@ class RatingAddPage extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      CustomText(
-                        'اكتب مراجعه عن تجربتك',
-                        fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: CustomText(
+                          'WriteReview'.tra(context),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       CustomText(
-                        '(اختياري)',
+                        '(${'Optional'.tra(context)})',
                         color: Colors.black38,
                       ),
                     ],
@@ -136,13 +142,13 @@ class RatingAddPage extends StatelessWidget {
                   ),
                   CustomButtonWidget(
                       loading: cubit.isLoadingInsertRating,
-                      title: 'ارسال',
+                      title: 'Send'.tra(context),
                       onTap: () async {
                         if (cubit.ratingValue > 0) {
                           Review review = Review(
                               name: cubit.nameReviewController.text,
                               usr: 0,
-                              rating: cubit.ratingValue,
+                              rating: cubit.ratingValue as int,
                               note: cubit.noteReviewController.text,
                               datetime: DateTime.now().toString());
                           var result = await cubit.insertReviews(review);
@@ -152,7 +158,7 @@ class RatingAddPage extends StatelessWidget {
                           }
                         } else {
                           showToast(
-                              text: 'الرجاء تقييم واحد من خمسه !',
+                              text: 'PleasRate'.tra(context),
                               state: ToastStates.WARNING);
                         }
                       }),
@@ -179,20 +185,20 @@ class RatingAddPage extends StatelessWidget {
       transitionDuration: const Duration(milliseconds: 500),
       pageBuilder: (_, __, ___) {
         return AlertDialog(
-          title: const Column(
+          title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Expanded(
                     child: CustomText(
-                      'تم الارسال',
+                      'Sent'.tra(context),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              Divider(),
+              const Divider(),
             ],
           ),
           content: Column(
@@ -205,16 +211,16 @@ class RatingAddPage extends StatelessWidget {
                 iconsDone,
                 fit: BoxFit.cover,
               ),
-              const CustomText(
-                'شكرا لتقيمك!',
+              CustomText(
+                'ThanksRating'.tra(context),
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
               const SizedBox(
                 height: 10,
               ),
-              const CustomText(
-                'شاكرين تفاعلك معنا',
+              CustomText(
+                'ThanksRaction'.tra(context),
                 textAlign: TextAlign.center,
                 color: textColor,
               ),

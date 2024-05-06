@@ -1,6 +1,8 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:wave_app/lang/app_localization.dart';
 import 'package:wave_app/screens/review/cubit/cubit.dart';
 import 'package:wave_app/shared/components/components.dart';
 import 'package:wave_app/shared/components/custom_widgits/custom_text.dart';
@@ -21,7 +23,7 @@ class RatingDetails extends StatelessWidget {
         var cubit = ReviewCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: const Text('تقييمات '),
+            title: Text("Ratings".tra(context)),
           ),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -37,18 +39,19 @@ class RatingDetails extends StatelessWidget {
                     builder: (context) => ConditionalBuilder(
                         condition: cubit.list_reviews.isNotEmpty,
                         fallback: (context) => SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.5,
-                              child: const Column(
-                                mainAxisSize: MainAxisSize.max,
+                              width: double.infinity,
+                              height: MediaQuery.of(context).size.height * 0.6,
+                              child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.star_rate_outlined,
                                     size: 40,
                                     color: Colors.black38,
                                   ),
                                   CustomText(
-                                    'لا يوجد تقييمات',
+                                    'NoRating'.tra(context),
                                     color: Colors.black38,
                                   )
                                 ],
@@ -70,6 +73,15 @@ class RatingDetails extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              context.pushNamed('review_add');
+            },
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
             ),
           ),
         );

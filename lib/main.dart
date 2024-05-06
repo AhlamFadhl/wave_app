@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wave_app/lang/app_localization.dart';
 import 'package:wave_app/lang/cubit/cubit.dart';
 import 'package:wave_app/lang/cubit/state.dart';
+import 'package:wave_app/screens/review/cubit/cubit.dart';
 import 'package:wave_app/screens/splash/cubit/cubit.dart';
 import 'package:wave_app/shared/network/local/cache_helper.dart';
 import 'package:wave_app/shared/network/remote/dio_helper.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => LocaleCubit()..getSavedLanguage()),
         BlocProvider(create: (context) => SplashCubit()..getSections()),
+        BlocProvider(create: ((context) => ReviewCubit()))
       ],
       child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
         // listener: (context, state) {},

@@ -16,6 +16,18 @@
     "Branch":"Branch",
     "ServiceList":"Service List",
     "back":"Tap back again to leave",
+    "Rate":"Rate",
+    "Ratings": "Ratings",
+    "NoRating": "No Ratings",
+    "RateService": "Rate Your Service Experience",
+    "WriteReview": "Write a Review About Your Experience",
+   "Send":"Send",
+   "Sent":"Sent Successfully",
+   "Optional": "Optional",
+   "PleasRate": "Please Rate 1 out of 5!",
+   "ThanksRating": "Thank you for your rating!",
+   "ThanksReaction": "Thank you for your feedback!",
+   "EnterName": "Enter Your Name",
     "":""
 
    }

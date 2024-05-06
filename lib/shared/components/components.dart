@@ -71,37 +71,40 @@ Widget buildSliders(List<String>? slider,
     SizedBox(
       height: height,
       child: slider != null
-          ? CarouselSlider.builder(
-              options: CarouselOptions(
-                height: height,
-                aspectRatio: 16 / 9,
-                viewportFraction: viewportFraction,
-                initialPage: 0,
-                enableInfiniteScroll: true,
-                reverse: false,
-                autoPlay: autoPlay,
-                autoPlayInterval: const Duration(seconds: 4),
-                autoPlayAnimationDuration: const Duration(milliseconds: 1000),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enlargeCenterPage: true,
-                enlargeFactor: 0.3,
-                onPageChanged: (index, reason) {},
-                scrollDirection: Axis.horizontal,
-              ),
-              itemCount: slider.length,
-              itemBuilder: (context, index, realIndex) => Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.grey.shade200)),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: CustomImage(
-                  url: slider[index],
-                  fit: BoxFit.cover,
-                ),
-              ),
-            )
+          ? (slider.isEmpty
+              ? Container()
+              : CarouselSlider.builder(
+                  options: CarouselOptions(
+                    height: height,
+                    aspectRatio: 16 / 9,
+                    viewportFraction: viewportFraction,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: autoPlay,
+                    autoPlayInterval: const Duration(seconds: 4),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 1000),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeCenterPage: true,
+                    enlargeFactor: 0.3,
+                    onPageChanged: (index, reason) {},
+                    scrollDirection: Axis.horizontal,
+                  ),
+                  itemCount: slider.length,
+                  itemBuilder: (context, index, realIndex) => Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.grey.shade200)),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    child: CustomImage(
+                      url: slider[index],
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ))
           : Container(
               color: baseColor,
             ),
@@ -151,7 +154,7 @@ Widget buildCategoryCard(Categories cat) => Container(
       ),
     );
 
-Widget buildStoreCard(Store store) => Container(
+Widget buildStoreCard(Store store, Function() onTapRating) => Container(
       width: 150,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       alignment: AlignmentDirectional.topStart,
@@ -198,7 +201,8 @@ Widget buildStoreCard(Store store) => Container(
           const SizedBox(
             height: 5,
           ),
-          if (store.review != null) buidRateStart(0.0),
+          if (store.review != null)
+            InkWell(onTap: onTapRating, child: buidRateStart(0.0)),
           const SizedBox(
             height: 5,
           ),
@@ -273,7 +277,7 @@ Widget buidRateStart(double rating) => RatingBarIndicator(
       itemCount: 5,
       itemSize: 15,
       itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-      itemBuilder: (context, index) => Icon(
+      itemBuilder: (context, index) => const Icon(
         Icons.star,
         color: Colors.amber,
       ),
@@ -321,7 +325,7 @@ Widget buildDepartment(Departments department) => Container(
 
 Widget buidServiceCard(Services srv, {required Function() onTapInfo}) =>
     Container(
-      height: 180,
+      // height: 200,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -375,19 +379,19 @@ Widget buidServiceCard(Services srv, {required Function() onTapInfo}) =>
                 srv.duration,
                 color: primaryColor,
                 fontWeight: FontWeight.bold,
-                fontSize: 13,
+                fontSize: 12,
               ),
               CustomText(
                 srv.price,
                 color: primaryColor,
                 fontWeight: FontWeight.bold,
-                fontSize: 13,
+                fontSize: 12,
               ),
             ],
           ),
         ),
         const SizedBox(
-          height: 5,
+          height: 4,
         ),
         Expanded(
           child: Padding(
@@ -395,7 +399,7 @@ Widget buidServiceCard(Services srv, {required Function() onTapInfo}) =>
             child: CustomText(
               srv.name,
               fontWeight: FontWeight.bold,
-              fontSize: 14,
+              fontSize: 12,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

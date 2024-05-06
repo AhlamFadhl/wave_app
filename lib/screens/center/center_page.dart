@@ -46,12 +46,13 @@ class CenterPage extends StatelessWidget {
                               Navigator.pop(context);
                             },
                             icon: Container(
+                              height: 35,
+                              width: 35,
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle, color: Colors.white),
                               alignment: Alignment.center,
                               child: const Icon(
                                 Icons.chevron_left_rounded,
-                                size: 30,
                               ),
                             ),
                           ),
@@ -228,7 +229,7 @@ class CenterPage extends StatelessWidget {
                     ),
                     Flexible(
                       child: SizedBox(
-                        height: MediaQuery.of(context).size.height - 440,
+                        height: MediaQuery.of(context).size.height - 390,
                         child: TabBarView(children: [
                           //Service
                           SingleChildScrollView(
@@ -282,7 +283,7 @@ class CenterPage extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(
-                                  height: 10,
+                                  height: 8,
                                 ),
                                 if (cubit.isLoading)
                                   const ShimmerGrid(
@@ -314,6 +315,9 @@ class CenterPage extends StatelessWidget {
                                           cubit.store.services![index]);
                                     }),
                                   ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
                               ],
                             ),
                           ),

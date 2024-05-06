@@ -14,7 +14,7 @@ class ReviewCubit extends Cubit<ReviewState> {
   bool isLoadingInsertRating = false;
   var noteReviewController = TextEditingController();
   var nameReviewController = TextEditingController();
-  int ratingValue = 0;
+  double ratingValue = 0.0;
   Future<int> insertReviews(Review review) async {
     int status = 0;
     try {
